@@ -39,11 +39,6 @@ function onGeoSuccess(position) {
         })
 }
 
-
-
-
-
-
 function onGeoError() {
     alert("Error: 위치 추적을 허용해 주세요.");
 }
