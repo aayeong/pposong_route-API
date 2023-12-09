@@ -1,3 +1,7 @@
+/* 지도 확대/축소 레벨 설정 */
+const ZOOMIN = 9;
+const ZOOMOUT = 3;
+
 /*북마크 기능 */
 function toggleBookmark() { //북마크 버튼 클릭 시 아이콘 효과
     const bottomBox = document.querySelector('.bottom');
@@ -60,6 +64,7 @@ function showLocation() {
     if(marker) { 
       var seoulCenter = new kakao.maps.LatLng(37.566826, 126.9786567);
       map.setCenter(seoulCenter);
+      map.setLevel(ZOOMIN);
       marker.setMap(null);
       marker = null;
       return;
@@ -71,6 +76,7 @@ function showLocation() {
     });
     // 지도 중심좌표를 현위치로 변경
     map.setCenter(locPosition);
+    map.setLevel(ZOOMOUT);
   }
 }
 
