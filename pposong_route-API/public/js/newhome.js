@@ -1,6 +1,6 @@
 /* 지도 확대/축소 레벨 설정 */
-const ZOOMIN = 9;
-const ZOOMOUT = 3;
+const ZOOMIN = 8;
+const ZOOMOUT = 4;
 
 /*북마크 기능 */
 function toggleBookmark() { //북마크 버튼 클릭 시 아이콘 효과
