@@ -75,7 +75,7 @@
     color: var(--yellow);
 }
 
-#map .loacation-btn i.active {
+#map .location-btn i.active {
     color: tomato;
 }
 
