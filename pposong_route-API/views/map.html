@@ -1,4 +1,5 @@
 <!--map.html(by 김건학) & newhome.html(by 안아영) 합친 코드-->
+<!--2023.12.10 업데이트-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +15,16 @@
     <title>Home</title>
 </head>
 <body>
+    <div class="status-bar">
+        <div class="status-bar__column">
+            <span>PPOSONG</span>
+            <i class="fa-solid fa-cloud" style="color: #9fd8f6;"></i>
+        </div>
+        <div class="status-bar__column">
+            <span>ver 0.6.1</span>
+        </div>
+    </div>
+
 	<header class="alt-header">
         <div class="alt-header__column">
             <i class="fa-solid fa-angle-left fa-xl"></i>
@@ -92,6 +103,13 @@
         </div>
     </main>
 
+    <div id="intro-screen">
+        <div class="intro-header">
+            <h1 class="intro-header__title">뽀송길</h1>
+            <p class="intro-header__subtitle"> 뽀송하게 이동할 시간 <i class="fa-solid fa-cloud" style="color: white;"></i></p>
+        </div>
+    </div>
+
     <!--js-->
 	<script> 
 		const receivedData = JSON.parse(`{{grid_data}}`); // 템플릿 문법이라 js파일에 추가 시 오류 발생하므로 html파일에 넣어줘야 함 (js파일로 분리 하면 X)
@@ -105,7 +123,5 @@
 	<script src="/js/back.js"></script>
 	<script src="/js/bookmark.js"></script>
 	<script src="/js/newhome.js"></script>
-    <!-- <script src="=/js/weather.js"></script> -->
 </body>
 </html>
-

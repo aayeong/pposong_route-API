@@ -29,8 +29,8 @@ function onGeoSuccess(position) {
             // 위치(동 이름)
             const location = document.querySelector(".location-name");
 
-            location.innerText = data.name;
-
+            // location.innerText =`${data.name}`;
+            location.innerText = `내 위치 현재온도`;
             temp.innerText = `${parseInt(data.main.temp)}°`;
             tempFeel.innerText = `체감온도 ${parseInt(data.main.feels_like)}°`;
 
@@ -38,8 +38,8 @@ function onGeoSuccess(position) {
             weatherIcon.src = `image/weather-icon/${weatherIconCode}.png`;
             weather.innerText = data.weather[0].main;
 
-            humid.innerText = `습도 ${data.main.humidity}%`;
-            wind.innerText = `풍속 ${data.wind.speed}m/s`;
+            humid.innerText = `${data.main.humidity}%`;
+            wind.innerText = `${data.wind.speed}m/s`;
 
         })
 }
@@ -48,61 +48,18 @@ function onGeoError() {
     alert("Error: 위치 추적을 허용해 주세요.");
 }
 
-
-/*북마크 기능 */
-// function toggleBookmark() { //북마크 버튼 클릭 시 아이콘 효과
-//     const bottomBox = document.querySelector('.bottom');
-//     const bookmarkIcon = document.querySelector('.fa-bookmark');
-//     bottomBox.classList.toggle('active');
-//     bottomBox.classList.remove('initial');
-//     bookmarkIcon.classList.toggle('active');
-// }
-// 북마크 버튼 클릭 시 화면 하단 bottom 박스에 bookmark.html 내용 fetch
-// document.querySelector('.bookmark-btn').addEventListener('click', function() {
-//     fetch('bookmark.html')
-//       .then(response => response.text())
-//       .then(data => {
-//         //초기화(이전에 추가된 요소 제거)
-//         const elementToDelete = document.querySelector('.bookmark-screen');
-//         if (elementToDelete) {
-//         elementToDelete.remove();
-//         }
-//         // 가져온 HTML을 파싱하여 DOM으로 변환
-//         const parser = new DOMParser();
-//         const htmlDocument = parser.parseFromString(data, 'text/html');
-//         // 원하는 요소를 가져오기 위해 해당 선택자로 요소 추출
-//         const extractedElement = htmlDocument.querySelector('.bookmark-screen');
-//         // 추출한 요소 삽입
-//         document.querySelector('.bottom').appendChild(extractedElement);
-//       })
-//       .catch(error => {
-//         console.error('Error.', error);
-//       });
-//   });
-
 /* bottom-bar experimental */
-function toggleBookmark() {
-  // 아이콘 효과
-  const bookmarkIcon = document.querySelector('.fa-bookmark');
-  bookmarkIcon.classList.toggle('active');
-}
-
-function toggleWeather() {
-  // 아이콘 효과
-  const weatherIcon = document.querySelector('.fa-cloud');
-  weatherIcon.classList.toggle('active');
-}
-
 // 날씨 버튼 클릭 시 날씨 show
 document.querySelector('.weather-btn').addEventListener('click', function() {
-  // 아이콘 효과
-  toggleWeather();
   
   const bottomBar = document.querySelector('.bottom-bar');
   const content = document.querySelector('.content');
   const weatherIcon = document.querySelector('.fa-cloud');
   const bookmarkIcon = document.querySelector('.fa-bookmark');
 
+  // 아이콘 효과
+  weatherIcon.classList.toggle('active');
+  // 하단 창 띄우기
   bottomBar.removeAttribute('hidden');
 
   if(weatherIcon.classList.contains('active')) {
@@ -110,21 +67,31 @@ document.querySelector('.weather-btn').addEventListener('click', function() {
     bottomBar.classList.remove('hide-bottom-bar');
     // content에 날씨 정보 띄울 공간 생성
     content.innerHTML = `
-      <div class="home-column home-weather">
-      <div class="location">
-          <i class="fa-solid fa-location-arrow"></i>
-          <span class="location-name"></span>
+    <div class="home-component">
+      <div class="home-column home-weather fixed">
+          <div class="location">
+              <i class="fa-solid fa-location-arrow"></i>
+              <span class="location-name text"></span>
+          </div>
+              <span class="temp-now">--.--°</span>
+              <span class="temp-feel text">체감온도 --.--°</span>
       </div>
-
-      <span class="temp-now"></span>
-      <span class="temp-feel"></span>
-
-      <img class="weather-icon" />
-      <span class="weather-now"></span>
-
-      <span class="humid"></span>
-      <span class="wind"></span>
-      </div>`;
+      <div class="home-column home-weather fixed">
+          <span class="text">날씨 상태</span>
+          <img class="weather-icon"/>
+          <span class="weather-now text">Weather</span>
+      </div>
+      <div class="home-column home-weather fixed">
+          <div class="etc-info">
+          <span>습도<span><br>
+          <span class="humid">--%</span>
+          </div>
+          <div class="etc-info">
+          <span>풍속</span>
+          <span class="wind">-.-m/s</span>
+          </div>    
+      </div>
+    </div>`;
     // content에 날씨 정보 넣기
     navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError); 
     
@@ -142,38 +109,66 @@ document.querySelector('.weather-btn').addEventListener('click', function() {
 
 // 북마크 버튼 클릭 시 북마크 show
 document.querySelector('.bookmark-btn').addEventListener('click', function() {
-  // 아이콘 효과
-  toggleBookmark();
-  
+
   const bottomBar = document.querySelector('.bottom-bar');
   const content = document.querySelector('.content');
   const weatherIcon = document.querySelector('.fa-cloud');
   const bookmarkIcon = document.querySelector('.fa-bookmark')
+
+  bookmarkIcon.classList.toggle('active'); //아이콘 효과
 
   bottomBar.removeAttribute('hidden');
 
   if(bookmarkIcon.classList.contains('active')) {
     // 하단 창 보이게 하기(slide-up)
     bottomBar.classList.remove('hide-bottom-bar');
-    // 기존 content 내용 삭제
-    content.innerHTML=`HELLO`;
-    // 하단 창에 북마크 show
-    // 북마크 버튼 클릭 시 화면 하단 bottom 박스에 bookmark.html 내용 fetch
-    fetch('bookmark.html')
-      .then(response => response.text())
-      .then(data => {
-        // 가져온 HTML을 파싱하여 DOM으로 변환
-        const parser = new DOMParser();
-        const htmlDocument = parser.parseFromString(data, 'text/html');
-        // 원하는 요소를 가져오기 위해 해당 선택자로 요소 추출
-        const extractedElement = htmlDocument.querySelector('.bookmark-screen');
-        // 추출한 요소 삽입
-        content.innerHTML= `extractedElement`;
-        console.log(extractedElement);
-      })
-      .catch(error => {
-        console.error('Error.', error);
-      });
+    // 기존 content 내용 북마크 내용으로 변경 (하단 창에 북마크 show)
+    content.innerHTML=`
+    <div class="bookmark-component">
+      
+      <div class="bookmark-column">
+        <div class="bookmark__route-icon">
+        <i class="fa-solid fa-route fa-xl"></i>
+        </div>
+        <div class="bookmark__info">
+          <h4 class="bookmark__location">9호선 신반포역<i class="fa-solid fa-arrow-right"></i>숭실대학교 정보과학관</h4>
+          <h6 class="bookmark__vehicle">
+            <i class="fa-solid fa-bus"></i>540, 643
+            <i class="fa-solid fa-chevron-right"></i>
+            <i class="fa-solid fa-bus"></i>752
+          </h6>
+        </div>
+      </div>
+      
+      <div class="bookmark-column">
+        <div class="bookmark__star-icon">
+          <i class="fa-solid fa-star fa-xl"></i>
+        </div>
+      </div>
+
+    </div>
+    
+    <div class="bookmark-component">
+      
+      <div class="bookmark-column">
+        <div class="bookmark__route-icon">
+        <i class="fa-solid fa-route fa-xl"></i>
+        </div>
+        <div class="bookmark__info">
+          <h4 class="bookmark__location">스타벅스 남성역점<i class="fa-solid fa-arrow-right"></i>숭실대학교 정보과학관</h4>
+          <h6 class="bookmark__vehicle">
+            <i class="fa-solid fa-bus"></i>752
+          </h6>
+        </div>
+      </div>
+      
+      <div class="bookmark-column">
+        <div class="bookmark__star-icon">
+          <i class="fa-solid fa-star fa-xl"></i>
+        </div>
+      </div>
+
+    </div>`;
       
     if(weatherIcon.classList.contains('active')){ // 날씨active된 상태에서 클릭되었을 때 -> 날씨 아이콘 active 해제
       weatherIcon.classList.remove('active');
