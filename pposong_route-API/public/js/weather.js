@@ -26,8 +26,8 @@ function onGeoSuccess(position) {
 
             location.innerText = data.name;
 
-            temp.innerText = `${data.main.temp}°`;
-            tempFeel.innerText = `체감온도 ${data.main.feels_like}°`;
+            temp.innerText = `${parseInt(data.main.temp)}°`;
+            tempFeel.innerText = `체감온도 ${parseInt(data.main.feels_like)}°`;
 
             const weatherIconCode = data.weather[0].icon;
             weatherIcon.src = `image/weather-icon/${weatherIconCode}.png`;
@@ -38,11 +38,6 @@ function onGeoSuccess(position) {
 
         })
 }
-
-
-
-
-
 
 function onGeoError() {
     alert("Error: 위치 추적을 허용해 주세요.");

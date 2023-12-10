@@ -68,7 +68,7 @@
             </nav>
             <!--우측 상단 북마크 버튼-->
             <div class="buttons" style="z-index: 2">
-                <div class="bookmark-btn" onclick="toggleBookmark()">
+                <div class="bookmark-btn">
                     <i class="fa-regular fa-bookmark"></i>
                 </div>
             </div>
@@ -78,8 +78,16 @@
                     <i class="fa-solid fa-location-crosshairs"></i>
                 </div>
             </div>
+            <!--우측 상단 날씨 버튼-->
+            <div class="buttons" style="z-index: 2">
+                <div class="weather-btn">
+                    <i class="fa-solid fa-cloud"></i>
+                </div>
+            </div>
+
             <!--하단 info component-->
-            <div class="bottom initial" style="z-index: 2">
+            <div class="bottom-bar" style="z-index: 2" hidden>
+                <div class="content"></div>
             </div>
         </div>
     </main>
@@ -97,5 +105,7 @@
 	<script src="/js/back.js"></script>
 	<script src="/js/bookmark.js"></script>
 	<script src="/js/newhome.js"></script>
+    <!-- <script src="=/js/weather.js"></script> -->
 </body>
 </html>
+
