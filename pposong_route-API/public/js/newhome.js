@@ -54,8 +54,8 @@ document.querySelector('.weather-btn').addEventListener('click', function() {
   
   const bottomBar = document.querySelector('.bottom-bar');
   const content = document.querySelector('.content');
-  const weatherIcon = document.querySelector('.fa-cloud');
-  const bookmarkIcon = document.querySelector('.fa-bookmark');
+  const weatherIcon = document.querySelector('.weather-btn i');
+  const bookmarkIcon = document.querySelector('.bookmark-btn i');
 
   // 아이콘 효과
   weatherIcon.classList.toggle('active');
@@ -99,8 +99,7 @@ document.querySelector('.weather-btn').addEventListener('click', function() {
     if(bookmarkIcon.classList.contains('active')){ 
       bookmarkIcon.classList.remove('active');
     }
-  }
-  else { // 날씨버튼 클릭되었으나 active아닐때, 
+  } else { // 날씨버튼 클릭되었으나 active아닐때, 
     // 하단 창 내리기(slide-down)
     weatherIcon.classList.remove('active');
     bottomBar.classList.add("hide-bottom-bar");
@@ -112,8 +111,8 @@ document.querySelector('.bookmark-btn').addEventListener('click', function() {
 
   const bottomBar = document.querySelector('.bottom-bar');
   const content = document.querySelector('.content');
-  const weatherIcon = document.querySelector('.fa-cloud');
-  const bookmarkIcon = document.querySelector('.fa-bookmark')
+  const weatherIcon = document.querySelector('.weather-btn i');
+  const bookmarkIcon = document.querySelector('.bookmark-btn i')
 
   bookmarkIcon.classList.toggle('active'); //아이콘 효과
 
@@ -188,7 +187,7 @@ document.querySelector('.bookmark-btn').addEventListener('click', function() {
 let marker = null;
 function showLocation() {
   // 위치 버튼 클릭 시 아이콘 효과
-  const locationIcon = document.querySelector('.fa-location-crosshairs');
+  const locationIcon = document.querySelector('.location-btn i');
   locationIcon.classList.toggle('active');
   const locationIconClicked = locationIcon.classList.contains('active');
 

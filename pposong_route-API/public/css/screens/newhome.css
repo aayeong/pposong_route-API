@@ -70,12 +70,12 @@
     color: gray;
 }
 
-#map .fa-bookmark.active {
+#map .bookmark-btn i.active {
     font-weight: 800;
     color: var(--yellow);
 }
 
-#map .fa-location-crosshairs.active {
+#map .loacation-btn i.active {
     color: tomato;
 }
 
